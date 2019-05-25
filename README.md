@@ -41,9 +41,17 @@ preprocessor macros to allow the actual application `main` function to compile.
 ## Gotchas and other tricks
 
 You don't need to hide the entire function with preprocessor macros as the
-example shows. You can instead hide just the `extern "C"` prefix. This retains
-`namespace::main()` functions with mangled symbols when compiled in case the
-code contained within them is needed. However they cannot be used to create an
-executable.
+example shows. You can instead hide just the `extern "C"` prefix. This
+retains `namespace::main()` functions with mangled symbols when compiled in
+case the code contained within them is needed. However they cannot be used
+to create an executable.
 
-You can only have "leaf" namespaced `main` functions
+If you split the definitions of a namespace between multiple files, you
+_can_ have a `main()` per file, so long as you do not try to compile
+multiple files containing `main()`s at once into a single test executable.
+That is, you can define multiple `main()`s per namespace, but you must take
+care to not define multiple per executable. This is part of why it's a bad
+idea to do this anyway.
+
+The preprocessor macro can be a CMake-defined variable. This allows you to
+enable/disable testing via CMake.
