@@ -1,6 +1,6 @@
 # beauty
 
-Built-in Entities for Automatic Unit-testing, Y'all
+Built-in Entities for Automatic Unit-Testing, Y'all
 
 ## Overview
 
